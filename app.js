@@ -50,9 +50,9 @@ app.use(
 
 
 // Serve an HTML page to the client
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "index.html"));
+// });
 
 app.post("/record-video", (req, res) => {
   try {
@@ -199,7 +199,8 @@ function saveVideoToFile(callback) {
 
 // Helper function to get the base URL of the server
 function getServerBaseUrl() {
-  const port = process.env.PORT || 3000;
-  return `http://localhost:${port}`;
+//   const port = process.env.PORT || 3000;
+//   const baseUrl = process.env.BASE_URL
+  return `https://helpmeout-sgbj.onrender.com`;
 }
 
