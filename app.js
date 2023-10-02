@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const http = require("http");
+const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -15,6 +16,12 @@ const wss = new WebSocket.Server({ server });
 // openai.configure({
 //   apiKey: "YOUR_OPENAI_API_KEY",
 // });
+
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
 
 // Create a writable stream to store video chunks
 const videoChunks = [];
@@ -37,6 +44,7 @@ wss.on("connection", (ws) => {
   });
 });
 
+app.use(cors(corsOptions));
 app.use(logger("dev"));
 app.use(bodyParser.json({ limit: "500mb", type: "application/json" }));
 app.use(express.json({ limit: '500mb' })); 
